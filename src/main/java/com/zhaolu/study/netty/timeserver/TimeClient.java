@@ -3,7 +3,7 @@ package com.zhaolu.study.netty.timeserver;
 /**
  * Created by Administrator on 2017/12/1.
  */
-public class TimeServer {
+public class TimeClient {
     public static void main(String[] args) {
         int port = 8080;
         if (args != null && args.length > 0) {
@@ -13,8 +13,6 @@ public class TimeServer {
                 //采用默认值
             }
         }
-        MultiplexerTimeServer timeServer = new MultiplexerTimeServer(port);
-
-        new Thread(timeServer,"NIO-MultiplexerTimeServer-001").start();
+        new Thread(new TimeClientHandle("127.0.0.1",port),"NIO-TimeClient-001").start();
     }
 }
